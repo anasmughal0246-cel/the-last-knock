@@ -1,3 +1,7 @@
+// Railway pe dotenv ki zaroorat nahi - env vars already available hain
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const app = require('./app');
 const connectDB = require('./config/db');
