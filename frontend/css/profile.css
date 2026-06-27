@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap');
+
+.profile-main {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background:
+    linear-gradient(to bottom, rgba(5,0,0,0.93) 0%, rgba(8,5,5,0.97) 100%),
+    url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=1600&q=80')
+    center/cover no-repeat fixed;
+}
+
+/* ── Banner ── */
+.profile-banner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 8%;
+  border-bottom: 1px solid #1a0000;
+  background: rgba(10,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.profile-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  background: rgba(139,0,0,0.15);
+  border: 2px solid #8b0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  box-shadow: 0 0 30px rgba(139,0,0,0.3), inset 0 0 20px rgba(0,0,0,0.5);
+  transition: all 0.3s;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 40px rgba(192,57,43,0.4);
+}
+
+.change-avatar-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid #3a1515;
+  border-radius: 20px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.change-avatar-btn:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+
+.profile-hero-info { flex: 1; }
+
+.profile-username {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: #e8e8e8;
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(139,0,0,0.3);
+}
+
+.profile-email {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.profile-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(139,0,0,0.15);
+  border: 1px solid rgba(139,0,0,0.4);
+  color: #c0392b;
+  letter-spacing: 0.04em;
+}
+
+/* ── Stats ── */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 40px 8%;
+  border-bottom: 1px solid #1a0000;
+}
+
+.profile-stat-card {
+  background: rgba(14,5,5,0.85);
+  border: 1px solid #2a1515;
+  border-radius: 12px;
+  padding: 28px 16px;
+  text-align: center;
+  transition: all 0.3s;
+  backdrop-filter: blur(4px);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #8b0000, transparent);
+}
+
+.profile-stat-card:hover {
+  border-color: #8b0000;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(139,0,0,0.15);
+}
+
+.pstat-val {
+  font-family: 'Creepster', cursive;
+  font-size: 2.8rem;
+  color: #c0392b;
+  text-shadow: 0 0 16px rgba(139,0,0,0.5);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.pstat-lbl {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Sections ── */
+.profile-section {
+  padding: 48px 8%;
+  border-bottom: 1px solid #1a0000;
+}
+
+.profile-section-title {
+  font-family: 'Creepster', cursive;
+  font-size: 2rem;
+  color: #c0392b;
+  margin-bottom: 28px;
+  text-shadow: 0 0 12px rgba(139,0,0,0.3);
+  letter-spacing: 0.05em;
+}
+
+/* ── Endings grid ── */
+.endings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.ending-card-small {
+  background: rgba(14,5,5,0.85);
+  border: 1px solid #2a1515;
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.ending-card-small.found {
+  border-color: rgba(139,0,0,0.5);
+  box-shadow: 0 0 16px rgba(139,0,0,0.1);
+}
+
+.ending-card-small:hover { transform: translateY(-4px); }
+
+.ending-card-small .e-icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 6px rgba(139,0,0,0.3));
+}
+
+.ending-card-small .e-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  color: #c0392b;
+  margin-bottom: 6px;
+}
+
+.ending-card-small .e-status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 0.06em;
+}
+
+.ending-card-small.found .e-status { color: #2e7d32; }
+
+/* ── Recent achievements ── */
+.recent-ach {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-ach-row {
+  background: rgba(14,5,5,0.85);
+  border: 1px solid #2a1515;
+  border-radius: 10px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.recent-ach-row:hover {
+  border-color: #8b0000;
+  transform: translateX(6px);
+  box-shadow: 0 0 16px rgba(139,0,0,0.1);
+}
+
+.recent-ach-icon { font-size: 1.8rem; flex-shrink: 0; }
+
+.recent-ach-name {
+  flex: 1;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+}
+
+.recent-ach-pts {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: #b8860b;
+  white-space: nowrap;
+  padding: 4px 12px;
+  background: rgba(184,134,11,0.1);
+  border: 1px solid rgba(184,134,11,0.2);
+  border-radius: 12px;
+}
+
+/* ── Avatar Modal ── */
+.avatar-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.avatar-modal-card {
+  background: #0d0505;
+  border: 1px solid #3a0000;
+  border-radius: 16px;
+  padding: 44px 36px;
+  max-width: 580px;
+  width: 100%;
+  box-shadow: 0 0 60px rgba(139,0,0,0.35);
+  animation: fadeInUp 0.4s ease;
+}
+
+.avatar-modal-title {
+  font-family: 'Creepster', cursive;
+  font-size: 2.2rem;
+  color: #c0392b;
+  text-align: center;
+  margin-bottom: 6px;
+  text-shadow: 0 0 16px rgba(139,0,0,0.4);
+}
+
+.avatar-modal-sub {
+  text-align: center;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 32px;
+  font-size: 1rem;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.avatar-option {
+  background: rgba(20,5,5,0.8);
+  border: 1px solid #2a1515;
+  border-radius: 10px;
+  padding: 16px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-option:hover {
+  border-color: #8b0000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139,0,0,0.2);
+}
+
+.avatar-option.selected {
+  border-color: #c0392b;
+  background: rgba(139,0,0,0.2);
+  box-shadow: 0 0 20px rgba(139,0,0,0.3);
+}
+
+.av-emoji { font-size: 2.2rem; }
+
+.av-name {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: #555;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.avatar-option.selected .av-name { color: #c0392b; }
+
+.avatar-close-btn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid #2a1515;
+  border-radius: 8px;
+  color: #555;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.06em;
+}
+
+.avatar-close-btn:hover {
+  border-color: #666;
+  color: #e8e8e8;
+}
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 768px) {
+  .profile-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 5%;
+    gap: 24px;
+  }
+  .profile-badges { justify-content: center; }
+  .profile-stats  { grid-template-columns: repeat(2, 1fr); padding: 28px 5%; }
+  .profile-section { padding: 32px 5%; }
+  .endings-grid   { grid-template-columns: repeat(2, 1fr); }
+  .avatar-grid    { grid-template-columns: repeat(3, 1fr); }
+  .avatar-modal-card { padding: 32px 20px; }
+}
+
+@media (max-width: 480px) {
+  .profile-stats  { gap: 10px; }
+  .pstat-val      { font-size: 2rem; }
+  .avatar-grid    { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .av-name        { display: none; }
+}

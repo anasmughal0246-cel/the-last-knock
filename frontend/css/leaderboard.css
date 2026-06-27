@@ -1,0 +1,183 @@
+.lb-main {
+  min-height: 100vh;
+  padding: 60px 8%;
+  background:
+    linear-gradient(to bottom, rgba(5,0,0,0.93) 0%, rgba(8,5,5,0.97) 100%),
+    url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&q=80')
+    center/cover no-repeat fixed;
+}
+
+.lb-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.lb-title {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #c0392b;
+  text-shadow: 0 0 30px rgba(139,0,0,0.5);
+  margin-bottom: 8px;
+}
+
+.lb-subtitle {
+  color: #666;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.lb-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── Podium ── */
+.lb-podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 40px;
+  min-height: 160px;
+}
+
+.podium-card {
+  background: rgba(14,5,5,0.9);
+  border: 1px solid #2a1515;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  flex: 1;
+  max-width: 180px;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.podium-card:hover { transform: translateY(-4px); }
+
+.podium-card.rank-1 {
+  border-color: #b8860b;
+  box-shadow: 0 0 24px rgba(184,134,11,0.2);
+  padding-top: 28px;
+}
+
+.podium-card.rank-2 {
+  border-color: #888;
+  box-shadow: 0 0 16px rgba(136,136,136,0.15);
+}
+
+.podium-card.rank-3 {
+  border-color: #8b4513;
+  box-shadow: 0 0 16px rgba(139,69,19,0.15);
+}
+
+.podium-medal {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.podium-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+  margin-bottom: 6px;
+}
+
+.podium-score {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: #b8860b;
+}
+
+/* ── Full list ── */
+.lb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lb-row {
+  background: rgba(14,5,5,0.85);
+  border: 1px solid #2a1515;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.lb-row:hover {
+  border-color: #8b0000;
+  transform: translateX(4px);
+}
+
+.lb-row.is-me {
+  border-color: rgba(139,0,0,0.6);
+  background: rgba(30,5,5,0.9);
+}
+
+.lb-rank {
+  font-family: 'Creepster', cursive;
+  font-size: 1.4rem;
+  color: #3a1a1a;
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lb-row:nth-child(1) .lb-rank { color: #b8860b; }
+.lb-row:nth-child(2) .lb-rank { color: #888; }
+.lb-row:nth-child(3) .lb-rank { color: #8b4513; }
+
+.lb-avatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(139,0,0,0.2);
+  border: 1px solid #3a1a1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Creepster', cursive;
+  font-size: 1.1rem;
+  color: #c0392b;
+  flex-shrink: 0;
+}
+
+.lb-name {
+  flex: 1;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+}
+
+.lb-row.is-me .lb-name::after {
+  content: ' (You)';
+  font-size: 0.8rem;
+  color: #c0392b;
+}
+
+.lb-score {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: #b8860b;
+  white-space: nowrap;
+}
+
+.lb-games {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .lb-main    { padding: 40px 4%; }
+  .lb-podium  { gap: 8px; }
+  .podium-card { padding: 14px 10px; }
+  .lb-games   { display: none; }
+}

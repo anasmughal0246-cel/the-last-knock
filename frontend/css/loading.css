@@ -1,0 +1,111 @@
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+#loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-title {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: #c0392b;
+  text-shadow: 0 0 30px rgba(139,0,0,0.8);
+  margin-bottom: 8px;
+  animation: flicker-text 3s infinite;
+}
+
+.loading-subtitle {
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 60px;
+}
+
+.loading-bar-wrap {
+  width: 260px;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #8b0000, #c0392b);
+  box-shadow: 0 0 10px rgba(139,0,0,0.6);
+  animation: load-fill 2s ease forwards;
+}
+
+.loading-msg {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes load-fill {
+  0%   { width: 0%; }
+  30%  { width: 35%; }
+  60%  { width: 65%; }
+  85%  { width: 88%; }
+  100% { width: 100%; }
+}
+
+@keyframes flicker-text {
+  0%, 95%, 100% { opacity: 1; }
+  96%           { opacity: 0.4; }
+  97%           { opacity: 1; }
+  98%           { opacity: 0.2; }
+  99%           { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+.loading-candles {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.candle-flame {
+  font-size: 1.8rem;
+  animation: flame 0.8s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(255,100,0,0.6));
+}
+
+.candle-body {
+  width: 12px;
+  height: 40px;
+  background: linear-gradient(to bottom, #e8e8e8, #ccc);
+  border-radius: 2px;
+}
+
+@keyframes flame {
+  from { transform: scaleX(1) rotate(-3deg); }
+  to   { transform: scaleX(0.85) rotate(3deg); }
+}

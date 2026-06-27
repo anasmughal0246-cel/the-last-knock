@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Last Knock — Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/story.css"/>
+  <link rel="stylesheet" href="css/loading.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-candles">
+      <div class="candle"><div class="candle-flame">🕯️</div></div>
+      <div class="candle"><div class="candle-flame">🕯️</div></div>
+      <div class="candle"><div class="candle-flame">🕯️</div></div>
+    </div>
+    <div class="loading-title">The Last Knock</div>
+    <div class="loading-subtitle">Every choice has a consequence...</div>
+    <div class="loading-bar-wrap"><div class="loading-bar-fill"></div></div>
+    <div class="loading-msg">Lighting the candles...</div>
+  </div>
+
+  <div class="flicker-overlay"></div>
+  <div class="flash-overlay" id="flash-overlay"></div>
+
+  <!-- Top HUD -->
+  <header class="story-hud">
+    <div class="hud-left">
+      <a href="dashboard.html" class="hud-back">← Exit</a>
+      <span class="hud-chapter" id="chapter-label">Chapter 1</span>
+    </div>
+    <div class="hud-center">
+      <div class="hud-progress-wrap">
+        <div class="hud-progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+    <div class="hud-right">
+      <span class="hud-score">⚡ <span id="score">0</span></span>
+      <span class="hud-timer hidden" id="timer-display">⏱ <span id="timer">--</span>s</span>
+    </div>
+  </header>
+
+  <!-- Main story area -->
+  <main class="story-main">
+
+    <!-- Inventory bar -->
+    <div class="inventory-bar" id="inventory-bar">
+      <span class="inv-label">🎒 Inventory:</span>
+      <span class="inv-items" id="inventory-items">Empty</span>
+    </div>
+
+    <!-- Chapter card -->
+    <div class="story-card">
+      <h2 class="chapter-title" id="chapter-title">The Dark House</h2>
+      <div class="story-divider">⸻ ✦ ⸻</div>
+      <p class="story-text" id="story-text"></p>
+    </div>
+
+    <!-- Choices -->
+    <div class="choices-container" id="choices-container"></div>
+
+  </main>
+
+  <!-- Ending Screen -->
+  <div class="ending-screen hidden" id="ending-screen">
+    <div class="ending-card">
+      <div class="ending-icon" id="ending-icon">💀</div>
+      <h2 class="ending-title" id="ending-title">The End</h2>
+      <p class="ending-text" id="ending-text"></p>
+      <div class="ending-score">
+        Final Score: <span id="final-score">0</span>
+      </div>
+      <div class="ending-actions">
+        <button class="btn-ending-play" onclick="restartGame()">🔄 Play Again</button>
+        <a href="dashboard.html" class="btn-ending-dash">🏠 Dashboard</a>
+        <button class="btn-ending-share" onclick="shareEnding()">📤 Share</button>
+      </div>
+    </div>
+  </div>
+
+ <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/typewriter.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/story.js"></script>
+</body>
+</html>

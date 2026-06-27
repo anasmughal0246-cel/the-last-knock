@@ -1,0 +1,158 @@
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #111111;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.dash-logo {
+  font-family: 'Creepster', cursive;
+  font-size: 1.8rem;
+  color: #c0392b;
+  text-shadow: 0 0 20px rgba(139,0,0,0.5);
+}
+
+.dash-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dash-nav a {
+  color: #888888;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dash-nav a:hover { color: #c0392b; }
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-family: 'Share Tech Mono', monospace;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #e8e8e8;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-sm:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+
+.dash-main {
+  padding: 60px 10%;
+  background: radial-gradient(ellipse at top, #1a0000 0%, #0a0a0a 60%);
+  min-height: calc(100vh - 80px);
+}
+
+.dash-welcome {
+  margin-bottom: 48px;
+}
+
+.dash-welcome h2 {
+  font-family: 'Creepster', cursive;
+  font-size: 2.8rem;
+  color: #e8e8e8;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.dash-welcome h2 span { color: #c0392b; }
+
+.dash-welcome p {
+  color: #888888;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.dash-card {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 36px 28px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.dash-card:hover {
+  border-color: #8b0000;
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(139,0,0,0.2);
+}
+
+.dash-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: #c0392b;
+}
+
+.dash-card h3 {
+  font-family: 'Creepster', cursive;
+  font-size: 1.6rem;
+  color: #c0392b;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.dash-card p {
+  color: #888888;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #8b0000;
+  color: #fff;
+  border: 1px solid #c0392b;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #c0392b;
+  box-shadow: 0 0 18px rgba(192,57,43,0.5);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 12px 28px;
+  background: transparent;
+  color: #e8e8e8;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-outline:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+  transform: translateY(-2px);
+}

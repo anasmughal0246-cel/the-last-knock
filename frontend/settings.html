@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings — The Last Knock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/settings.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+  <div class="flicker-overlay"></div>
+
+  <header class="dash-header">
+    <h1 class="dash-logo">The Last Knock</h1>
+    <nav class="dash-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="story.html">▶ Play</a>
+      <a href="profile.html">👤 Profile</a>
+      <button class="btn-sm" id="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <main class="settings-main">
+    <h2 class="settings-title">Settings</h2>
+    <p class="settings-subtitle">Control your experience in the dark</p>
+
+    <div class="settings-sections">
+
+      <div class="settings-card fade-in-up">
+        <h3 class="settings-section-title">🔊 Sound</h3>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Ambient Sound</span>
+            <span class="setting-desc">Horror ambience during story</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="sound-toggle" checked/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">UI Sounds</span>
+            <span class="setting-desc">Click sounds on choices</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="ui-sound-toggle" checked/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-card fade-in-up">
+        <h3 class="settings-section-title">🎨 Appearance</h3>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Typewriter Speed</span>
+            <span class="setting-desc">How fast story text appears</span>
+          </div>
+          <select class="setting-select" id="typewriter-speed">
+            <option value="10">Fast</option>
+            <option value="20" selected>Normal</option>
+            <option value="40">Slow</option>
+            <option value="0">Instant</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Flicker Effect</span>
+            <span class="setting-desc">Screen flicker overlay</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="flicker-toggle" checked/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-card fade-in-up">
+        <h3 class="settings-section-title">👤 Account</h3>
+        <div id="account-alert"></div>
+        <div class="setting-row vertical">
+          <label class="setting-label">Change Password</label>
+          <input type="password" id="current-password" class="setting-input" placeholder="Current password"/>
+          <input type="password" id="new-password"     class="setting-input" placeholder="New password (min 6 chars)"/>
+          <input type="password" id="confirm-password" class="setting-input" placeholder="Confirm new password"/>
+          <button class="btn-setting-save" id="change-password-btn">Update Password</button>
+        </div>
+      </div>
+
+      <div class="settings-card danger-card fade-in-up">
+        <h3 class="settings-section-title">⚠️ Danger Zone</h3>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Reset All Progress</span>
+            <span class="setting-desc">Wipes your story progress. Cannot be undone.</span>
+          </div>
+          <button class="btn-danger" id="reset-btn">Reset</button>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Delete Account</span>
+            <span class="setting-desc">Permanently deletes your account and all data.</span>
+          </div>
+          <button class="btn-danger" id="delete-btn">Delete</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

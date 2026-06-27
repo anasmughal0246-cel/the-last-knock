@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile — The Last Knock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/profile.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+  <div class="flicker-overlay"></div>
+
+  <header class="dash-header">
+    <h1 class="dash-logo">The Last Knock</h1>
+    <nav class="dash-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="story.html">▶ Play</a>
+      <a href="achievements.html">🏆 Achievements</a>
+      <a href="leaderboard.html">📊 Leaderboard</a>
+      <button class="btn-sm" id="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <main class="profile-main">
+
+    <!-- Banner -->
+    <div class="profile-banner">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="profile-avatar">👤</div>
+        <button class="change-avatar-btn" id="change-avatar-btn">Change Avatar</button>
+      </div>
+      <div class="profile-hero-info">
+        <h2 class="profile-username" id="profile-username">Loading...</h2>
+        <p class="profile-email" id="profile-email"></p>
+        <div class="profile-badges" id="profile-badges"></div>
+      </div>
+    </div>
+
+    <!-- Avatar Picker Modal -->
+    <div class="avatar-modal hidden" id="avatar-modal">
+      <div class="avatar-modal-card">
+        <h3 class="avatar-modal-title">Choose Your Horror Avatar</h3>
+        <p class="avatar-modal-sub">Who are you in the dark?</p>
+        <div class="avatar-grid" id="avatar-grid"></div>
+        <button class="avatar-close-btn" id="avatar-close-btn">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-stats">
+      <div class="profile-stat-card">
+        <div class="pstat-val" id="stat-score">0</div>
+        <div class="pstat-lbl">Total Score</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="pstat-val" id="stat-games">0</div>
+        <div class="pstat-lbl">Games Played</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="pstat-val" id="stat-achievements">0</div>
+        <div class="pstat-lbl">Achievements</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="pstat-val" id="stat-endings">0</div>
+        <div class="pstat-lbl">Endings Found</div>
+      </div>
+    </div>
+
+    <!-- Endings -->
+    <div class="profile-section">
+      <h3 class="profile-section-title">📖 Endings Discovered</h3>
+      <div class="endings-grid" id="endings-grid"></div>
+    </div>
+
+    <!-- Recent Achievements -->
+    <div class="profile-section">
+      <h3 class="profile-section-title">🏆 Recent Achievements</h3>
+      <div class="recent-ach" id="recent-ach"></div>
+    </div>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

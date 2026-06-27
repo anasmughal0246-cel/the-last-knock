@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — The Last Knock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+  <div class="flicker-overlay"></div>
+
+  <header class="dash-header">
+    <h1 class="dash-logo">⚙️ Admin Panel</h1>
+    <nav class="dash-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <button class="btn-sm" id="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- Stats -->
+    <div class="admin-stats" id="admin-stats">
+      <div class="stat-card"><div class="stat-val" id="stat-users">-</div><div class="stat-lbl">Total Users</div></div>
+      <div class="stat-card"><div class="stat-val" id="stat-chapters">-</div><div class="stat-lbl">Chapters</div></div>
+      <div class="stat-card"><div class="stat-val" id="stat-games">-</div><div class="stat-lbl">Games Completed</div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="showTab('chapters')">📖 Chapters</button>
+      <button class="tab-btn"        onclick="showTab('users')">👥 Users</button>
+    </div>
+
+    <!-- Chapters Tab -->
+    <div class="tab-content" id="tab-chapters">
+      <div class="admin-toolbar">
+        <h3 class="admin-section-title">Story Chapters</h3>
+        <button class="btn-admin-add" onclick="openAddChapter()">+ Add Chapter</button>
+      </div>
+      <div id="chapters-list"><div class="spinner"></div></div>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-content hidden" id="tab-users">
+      <h3 class="admin-section-title">Registered Users</h3>
+      <div id="users-list"><div class="spinner"></div></div>
+    </div>
+
+  </main>
+
+  <!-- Chapter Modal -->
+  <div class="modal-overlay hidden" id="chapter-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Chapter</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div id="modal-alert"></div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Chapter Number</label>
+          <input type="number" id="m-number" placeholder="e.g. 18"/>
+        </div>
+        <div class="form-row">
+          <label>Title</label>
+          <input type="text" id="m-title" placeholder="Chapter title"/>
+        </div>
+        <div class="form-row">
+          <label>Content</label>
+          <textarea id="m-content" rows="5" placeholder="Story text..."></textarea>
+        </div>
+        <div class="form-row">
+          <label>Ambience</label>
+          <select id="m-ambience">
+            <option value="ambient">Ambient</option>
+            <option value="heartbeat">Heartbeat</option>
+            <option value="whisper">Whisper</option>
+            <option value="footsteps">Footsteps</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Time Limit (seconds, 0 = none)</label>
+          <input type="number" id="m-timelimit" value="0"/>
+        </div>
+        <div class="form-row">
+          <label>
+            <input type="checkbox" id="m-isending"/> Is Ending Chapter
+          </label>
+        </div>
+        <div class="form-row" id="ending-type-row">
+          <label>Ending Type</label>
+          <select id="m-endingtype">
+            <option value="escape">Escape</option>
+            <option value="trapped">Trapped</option>
+            <option value="sacrifice">Sacrifice</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-modal-save" id="modal-save-btn" onclick="saveChapter()">Save Chapter</button>
+          <button class="btn-modal-cancel" onclick="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

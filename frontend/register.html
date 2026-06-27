@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register — The Last Knock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/auth.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+  <div class="flicker-overlay"></div>
+
+  <div class="auth-page">
+    <!-- Left side: horror image -->
+    <div class="auth-image-side register-image">
+      <div class="auth-image-overlay"></div>
+      <div class="auth-image-content">
+        <h1 class="auth-brand">The Last Knock</h1>
+        <p class="auth-brand-sub">"Every story has a price."</p>
+        <div class="auth-poster-tags">
+          <span>⏱️ Timed Choices</span>
+          <span>🔀 Your Path</span>
+          <span>👻 Survive</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: form -->
+    <div class="auth-form-side">
+      <div class="auth-form-box">
+        <div class="auth-form-header">
+          <h2 class="auth-title">Begin Your Story</h2>
+          <p class="auth-subtitle">Sign your name in the dark...</p>
+        </div>
+
+        <div id="register-alert"></div>
+
+        <div class="auth-field">
+          <label>Username</label>
+          <input type="text" id="username" placeholder="Your name, survivor" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="your@email.com" autocomplete="email"/>
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Min 6 characters" autocomplete="new-password"/>
+        </div>
+
+        <button class="auth-btn" id="register-btn">Sign the Contract</button>
+
+        <p class="auth-switch">
+          Already cursed? <a href="login.html">Return to the dark</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (localStorage.getItem('token')) window.location.href = '/dashboard.html';
+
+    document.getElementById('register-btn').addEventListener('click', async () => {
+      const username = document.getElementById('username').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const alertEl  = document.getElementById('register-alert');
+      alertEl.innerHTML = '';
+
+      if (!username || !email || !password) {
+        alertEl.innerHTML = '<div class="auth-alert error">Please fill in all fields</div>';
+        return;
+      }
+      if (password.length < 6) {
+        alertEl.innerHTML = '<div class="auth-alert error">Password must be at least 6 characters</div>';
+        return;
+      }
+
+      const btn = document.getElementById('register-btn');
+      btn.textContent = 'Signing...';
+      btn.disabled = true;
+
+      try {
+        const res  = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = '/dashboard.html';
+      } catch (err) {
+        alertEl.innerHTML = `<div class="auth-alert error">${err.message}</div>`;
+        btn.textContent = 'Sign the Contract';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

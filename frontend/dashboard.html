@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — The Last Knock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+</head>
+<body>
+  <div class="flicker-overlay"></div>
+
+  <header class="dash-header">
+    <h1 class="dash-logo">The Last Knock</h1>
+    <nav class="dash-nav">
+      <a href="story.html">▶ Play</a>
+      <a href="achievements.html">🏆 Achievements</a>
+      <a href="leaderboard.html">📊 Leaderboard</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="admin.html">🔧 Admin</a>
+      <button class="btn-sm" id="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <main class="dash-main">
+    <div class="dash-welcome">
+      <h2>Welcome back, <span class="nav-username">Survivor</span></h2>
+      <p>The darkness remembers you. Will you dare to knock again?</p>
+    </div>
+
+    <div class="dash-cards">
+      <div class="dash-card">
+        <div class="dash-card-icon">▶</div>
+        <h3>Continue Story</h3>
+        <p>Resume from where you left off</p>
+        <a href="story.html" class="btn-primary">Play Now</a>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-icon">🔄</div>
+        <h3>New Game</h3>
+        <p>Start fresh — new choices, new fate</p>
+        <button class="btn-outline" onclick="newGame()">Restart</button>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-icon">🏆</div>
+        <h3>Achievements</h3>
+        <p>See what you've unlocked</p>
+        <a href="achievements.html" class="btn-outline">View All</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

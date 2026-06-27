@@ -1,0 +1,126 @@
+.dash-main {
+  min-height: 100vh;
+  background:
+    linear-gradient(to bottom, rgba(10,0,0,0.88) 0%, rgba(5,5,5,0.95) 100%),
+    url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80')
+    center/cover no-repeat fixed;
+  padding: 60px 8%;
+}
+
+.dash-welcome {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.dash-welcome h2 {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #e8e8e8;
+  margin-bottom: 10px;
+}
+
+.dash-welcome h2 .nav-username {
+  color: #c0392b;
+  text-shadow: 0 0 20px rgba(139,0,0,0.5);
+}
+
+.dash-welcome p {
+  color: #888;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dash-card {
+  background: rgba(17,17,17,0.92);
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.dash-card:hover {
+  border-color: #8b0000;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(139,0,0,0.2);
+}
+
+.dash-card-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(139,0,0,0.4));
+}
+
+.dash-card h3 {
+  font-family: 'Creepster', cursive;
+  font-size: 1.6rem;
+  color: #c0392b;
+  margin-bottom: 10px;
+}
+
+.dash-card p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  min-height: 44px;
+}
+
+.dash-card .btn-primary,
+.dash-card .btn-outline {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.dash-card .btn-primary {
+  background: #8b0000;
+  color: #fff;
+  border: 1px solid #c0392b;
+}
+.dash-card .btn-primary:hover {
+  background: #c0392b;
+  box-shadow: 0 0 16px rgba(192,57,43,0.4);
+}
+
+.dash-card .btn-outline {
+  background: transparent;
+  color: #e8e8e8;
+  border: 1px solid #2a2a2a;
+}
+.dash-card .btn-outline:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .dash-main { padding: 40px 5%; }
+
+  .dash-cards {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .dash-card { padding: 28px 20px; }
+  .dash-card p { min-height: unset; }
+}
+
+@media (max-width: 480px) {
+  .dash-welcome h2 { font-size: 1.8rem; }
+}
