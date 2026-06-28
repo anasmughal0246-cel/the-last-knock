@@ -8,6 +8,35 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/dashboard.css"/>
   <link rel="stylesheet" href="css/animations.css"/>
+  <style>
+    .genre-select-section { padding: 40px 10%; border-bottom: 1px solid #1a0000; }
+    .genre-select-title { font-family: 'Creepster', cursive; font-size: 2rem; color: #c0392b; margin-bottom: 8px; }
+    .genre-select-sub { color: #666; font-style: italic; margin-bottom: 28px; font-size: 1rem; }
+    .genre-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .genre-btn {
+      padding: 16px 28px;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      background: #111;
+      color: #e8e8e8;
+      font-family: 'Creepster', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .genre-btn:hover { transform: translateY(-3px); }
+    .genre-btn.horror { border-color: #3a0000; }
+    .genre-btn.horror:hover { border-color: #c0392b; box-shadow: 0 8px 24px rgba(139,0,0,0.2); color: #c0392b; }
+    .genre-btn.funny { border-color: #1a3a00; }
+    .genre-btn.funny:hover { border-color: #27ae60; box-shadow: 0 8px 24px rgba(39,174,96,0.2); color: #27ae60; }
+    .genre-btn.mixed { border-color: #1a1a3a; opacity: 0.5; cursor: not-allowed; }
+    .genre-active { border-color: #c0392b !important; background: rgba(139,0,0,0.15) !important; }
+    .genre-btn.funny.genre-active { border-color: #27ae60 !important; background: rgba(39,174,96,0.15) !important; }
+  </style>
 </head>
 <body>
   <div class="flicker-overlay"></div>
@@ -15,12 +44,10 @@
   <header class="dash-header">
     <h1 class="dash-logo">The Last Knock</h1>
     <nav class="dash-nav">
-      <a href="story.html">▶ Play</a>
-      <a href="achievements.html">🏆 Achievements</a>
-      <a href="leaderboard.html">📊 Leaderboard</a>
-      <a href="profile.html">👤 Profile</a>
-      <a href="settings.html">⚙️ Settings</a>
-      <a href="admin.html">🔧 Admin</a>
+      <a href="story.html">&#9654; Play</a>
+      <a href="achievements.html">&#127942; Achievements</a>
+      <a href="leaderboard.html">&#128202; Leaderboard</a>
+      <a href="profile.html">&#128100; Profile</a>
       <button class="btn-sm" id="logout-btn">Logout</button>
     </nav>
   </header>
@@ -31,21 +58,38 @@
       <p>The darkness remembers you. Will you dare to knock again?</p>
     </div>
 
+    <!-- Genre Selection -->
+    <div class="genre-select-section">
+      <h3 class="genre-select-title">Choose Your Story Type</h3>
+      <p class="genre-select-sub">Pick a genre before you play</p>
+      <div class="genre-btns">
+        <button class="genre-btn horror" onclick="selectGenre('horror')">
+          &#128123; Horror
+        </button>
+        <button class="genre-btn funny" onclick="selectGenre('funny')">
+          &#128514; Funny
+        </button>
+        <button class="genre-btn mixed" disabled>
+          &#127917; Mixed (Coming Soon)
+        </button>
+      </div>
+    </div>
+
     <div class="dash-cards">
       <div class="dash-card">
-        <div class="dash-card-icon">▶</div>
+        <div class="dash-card-icon">&#9654;</div>
         <h3>Continue Story</h3>
         <p>Resume from where you left off</p>
-        <a href="story.html" class="btn-primary">Play Now</a>
+        <a href="story.html" class="btn-primary" id="play-btn">Play Now</a>
       </div>
       <div class="dash-card">
-        <div class="dash-card-icon">🔄</div>
+        <div class="dash-card-icon">&#128260;</div>
         <h3>New Game</h3>
         <p>Start fresh — new choices, new fate</p>
         <button class="btn-outline" onclick="newGame()">Restart</button>
       </div>
       <div class="dash-card">
-        <div class="dash-card-icon">🏆</div>
+        <div class="dash-card-icon">&#127942;</div>
         <h3>Achievements</h3>
         <p>See what you've unlocked</p>
         <a href="achievements.html" class="btn-outline">View All</a>

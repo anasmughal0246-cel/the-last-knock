@@ -1,3 +1,6 @@
+const genreStartChapter = { horror: 1, funny: 101, mixed: 1 };
+const genre = localStorage.getItem('selectedGenre') || 'horror';
+const startChapterMap = { horror: 1, funny: 101, mixed: 1 };
 document.addEventListener('DOMContentLoaded', async () => {
   const token = localStorage.getItem('token');
   if (!token) { window.location.href = '/login.html'; return; }
@@ -7,9 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     const data = await api.getProgress();
-    const startChapter = data.progress ? data.progress.currentChapter : 1;
-    setTimeout(() => loadChapter(startChapter), 2500);
-  } catch {
+    const genre = localStorage.getItem('selectedGenre') || 'horror';
+const startChapter = data.progress ? data.progress.currentChapter : (genreStartChapter[genre] || 1);
+loadChapter(startChapter);  } catch {
     setTimeout(() => loadChapter(1), 2500);
   }
 });

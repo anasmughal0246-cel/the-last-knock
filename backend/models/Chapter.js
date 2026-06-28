@@ -12,6 +12,11 @@ const choiceSchema = new mongoose.Schema({
 
 const chapterSchema = new mongoose.Schema({
   chapterNumber: { type: Number, required: true, unique: true },
+genre: {
+  type: String,
+  enum: ['horror', 'funny', 'mixed'],
+  default: 'horror',
+},
   title: { type: String, required: true },
   content: { type: String, required: true },
   choices: [choiceSchema],

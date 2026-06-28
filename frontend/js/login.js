@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = '/dashboard.html';
     return;
   }
+const urlParams = new URLSearchParams(window.location.search);
+const genre = urlParams.get('genre') || 'horror';
+localStorage.setItem('selectedGenre', genre);
 
   const form     = document.getElementById('login-form');
   const btn      = document.getElementById('login-btn');

@@ -7,75 +7,96 @@
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/animations.css"/>
+  <style>
+    .genre-section { padding: 60px 10%; background: #0a0a0a; text-align: center; }
+    .genre-title { font-family: 'Creepster', cursive; font-size: 2.5rem; color: #c0392b; margin-bottom: 8px; }
+    .genre-subtitle { color: #666; font-style: italic; margin-bottom: 48px; }
+    .genre-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .genre-card { background: #111; border: 1px solid #2a2a2a; border-radius: 16px; padding: 40px 28px; text-decoration: none; transition: all 0.3s; display: block; color: #e8e8e8; }
+    .genre-card:hover { transform: translateY(-6px); }
+    .genre-card.horror { border-color: #3a0000; }
+    .genre-card.horror:hover { border-color: #c0392b; box-shadow: 0 12px 40px rgba(139,0,0,0.2); }
+    .genre-card.funny { border-color: #1a3a00; }
+    .genre-card.funny:hover { border-color: #27ae60; box-shadow: 0 12px 40px rgba(39,174,96,0.2); }
+    .genre-card.mixed { border-color: #1a1a3a; }
+    .genre-card.mixed:hover { border-color: #8e44ad; box-shadow: 0 12px 40px rgba(142,68,173,0.2); }
+    .genre-emoji { font-size: 4rem; display: block; margin-bottom: 16px; }
+    .genre-name { font-family: 'Creepster', cursive; font-size: 2rem; margin-bottom: 10px; }
+    .genre-card.horror .genre-name { color: #c0392b; }
+    .genre-card.funny .genre-name { color: #27ae60; }
+    .genre-card.mixed .genre-name { color: #8e44ad; }
+    .genre-desc { color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 20px; }
+    .genre-tag { font-family: 'Share Tech Mono', monospace; font-size: 11px; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.08em; }
+    .genre-card.horror .genre-tag { background: rgba(139,0,0,0.2); color: #c0392b; border: 1px solid rgba(139,0,0,0.3); }
+    .genre-card.funny .genre-tag { background: rgba(39,174,96,0.2); color: #27ae60; border: 1px solid rgba(39,174,96,0.3); }
+    .genre-card.mixed .genre-tag { background: rgba(142,68,173,0.2); color: #8e44ad; border: 1px solid rgba(142,68,173,0.3); }
+  </style>
 </head>
-<script src="js/sound.js"></script>
-  <script>
-    document.addEventListener('click', function initSound() {
-      Sound.init();
-      Sound.playKnock();
-      document.removeEventListener('click', initSound);
-    }, { once: true });
-
-    // Auto knock after 2 seconds
-    setTimeout(() => {
-      Sound.init();
-      Sound.playKnock();
-    }, 2000);
-  </script>
 <body>
   <div class="flicker-overlay"></div>
-
   <main class="hero">
     <div class="hero-content">
       <h1 class="game-title">The Last Knock</h1>
       <p class="game-subtitle">Every choice echoes in the dark.</p>
-      <p class="game-desc">
-        A horror interactive story where your decisions determine
-        whether you survive the night — or become part of it.
-      </p>
+      <p class="game-desc">A horror interactive story where your decisions determine whether you survive the night or become part of it.</p>
       <div class="hero-buttons">
         <a href="register.html" class="btn btn-primary">Begin Your Story</a>
-        <a href="login.html"    class="btn btn-outline">I've Been Here Before</a>
+        <a href="login.html" class="btn btn-outline">I've Been Here Before</a>
       </div>
     </div>
     <div class="hero-ghost">
-      <div class="ghost-figure">👻</div>
+      <div class="ghost-figure">&#128123;</div>
     </div>
   </main>
-
+  <section class="genre-section">
+    <h2 class="genre-title">Choose Your Story</h2>
+    <p class="genre-subtitle">Pick your adventure - each path leads somewhere different</p>
+    <div class="genre-cards">
+      <a href="login.html?genre=horror" class="genre-card horror fade-in-up">
+        <span class="genre-emoji">&#128123;</span>
+        <div class="genre-name">Horror</div>
+        <p class="genre-desc">Dark corridors, strange knocks, and choices that haunt you. Not for the faint of heart.</p>
+        <span class="genre-tag">SCARY</span>
+      </a>
+      <a href="login.html?genre=funny" class="genre-card funny fade-in-up">
+        <span class="genre-emoji">&#128514;</span>
+        <div class="genre-name">Funny</div>
+        <p class="genre-desc">Haunted biryani, ghost chefs, and cursed desserts. Laugh your way through the supernatural.</p>
+        <span class="genre-tag">COMEDY</span>
+      </a>
+      <a href="login.html?genre=mixed" class="genre-card mixed fade-in-up">
+        <span class="genre-emoji">&#127917;</span>
+        <div class="genre-name">Mixed</div>
+        <p class="genre-desc">When horror meets comedy - you never know whether to scream or laugh. Coming soon!</p>
+        <span class="genre-tag">COMING SOON</span>
+      </a>
+    </div>
+  </section>
   <section class="features">
     <div class="feature-card">
-      <span class="feature-icon">🔀</span>
+      <span class="feature-icon">&#128256;</span>
       <h3>Branching Story</h3>
-      <p>Every choice changes the path. No two playthroughs are the same.</p>
+      <p>Every choice changes the path.</p>
     </div>
     <div class="feature-card">
-      <span class="feature-icon">🏆</span>
+      <span class="feature-icon">&#127942;</span>
       <h3>Achievements</h3>
       <p>Unlock secret badges hidden throughout the story.</p>
     </div>
     <div class="feature-card">
-      <span class="feature-icon">💀</span>
+      <span class="feature-icon">&#128128;</span>
       <h3>Multiple Endings</h3>
-      <p>Survive, sacrifice, or vanish. The ending is yours to find.</p>
+      <p>Survive, sacrifice, or vanish.</p>
     </div>
     <div class="feature-card">
-      <span class="feature-icon">⏱️</span>
+      <span class="feature-icon">&#9201;</span>
       <h3>Timed Choices</h3>
-      <p>Hesitate too long and darkness decides for you.</p>
+      <p>Hesitate too long and darkness decides.</p>
     </div>
   </section>
-
   <footer class="main-footer">
-    <p>© 2025 The Last Knock. Do you dare knock back?</p>
+    <p>2025 The Last Knock.</p>
   </footer>
-
   <script src="js/auth.js"></script>
-  <script>
-    // If already logged in, redirect to dashboard
-    if (localStorage.getItem('token')) {
-      window.location.href = '/dashboard.html';
-    }
-  </script>
 </body>
 </html>
