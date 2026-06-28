@@ -3,100 +3,489 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Last Knock</title>
+  <title>The Last Knock — A Horror Interactive Story</title>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/animations.css"/>
   <style>
-    .genre-section { padding: 60px 10%; background: #0a0a0a; text-align: center; }
-    .genre-title { font-family: 'Creepster', cursive; font-size: 2.5rem; color: #c0392b; margin-bottom: 8px; }
-    .genre-subtitle { color: #666; font-style: italic; margin-bottom: 48px; }
-    .genre-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .genre-card { background: #111; border: 1px solid #2a2a2a; border-radius: 16px; padding: 40px 28px; text-decoration: none; transition: all 0.3s; display: block; color: #e8e8e8; }
-    .genre-card:hover { transform: translateY(-6px); }
-    .genre-card.horror { border-color: #3a0000; }
-    .genre-card.horror:hover { border-color: #c0392b; box-shadow: 0 12px 40px rgba(139,0,0,0.2); }
-    .genre-card.funny { border-color: #1a3a00; }
-    .genre-card.funny:hover { border-color: #27ae60; box-shadow: 0 12px 40px rgba(39,174,96,0.2); }
-    .genre-card.mixed { border-color: #1a1a3a; }
-    .genre-card.mixed:hover { border-color: #8e44ad; box-shadow: 0 12px 40px rgba(142,68,173,0.2); }
-    .genre-emoji { font-size: 4rem; display: block; margin-bottom: 16px; }
-    .genre-name { font-family: 'Creepster', cursive; font-size: 2rem; margin-bottom: 10px; }
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 10% 60px;
+      position: relative;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(5,0,0,0.92) 60%, #0a0a0a 100%),
+        url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=1800&q=80') center/cover no-repeat fixed;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, #0a0a0a);
+    }
+    .hero-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #c0392b;
+      border: 1px solid rgba(192,57,43,0.4);
+      padding: 6px 20px;
+      border-radius: 20px;
+      background: rgba(139,0,0,0.1);
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      display: inline-block;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .game-title {
+      font-family: 'Creepster', cursive;
+      font-size: clamp(4rem, 12vw, 9rem);
+      color: #fff;
+      text-shadow:
+        0 0 40px rgba(192,57,43,0.8),
+        0 0 80px rgba(139,0,0,0.4),
+        4px 4px 0 rgba(0,0,0,0.5);
+      line-height: 0.9;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+    .game-title span { color: #c0392b; }
+    .game-subtitle {
+      font-family: 'Crimson Text', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 48px;
+      max-width: 600px;
+      line-height: 1.7;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.7s ease 0.3s both;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-hero-primary {
+      padding: 18px 48px;
+      background: #8b0000;
+      color: #fff;
+      border: 1px solid #c0392b;
+      border-radius: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-hero-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+    }
+    .btn-hero-primary:hover {
+      background: #c0392b;
+      box-shadow: 0 0 40px rgba(192,57,43,0.5), 0 8px 24px rgba(0,0,0,0.4);
+      transform: translateY(-3px);
+      color: #fff;
+    }
+    .btn-hero-secondary {
+      padding: 18px 40px;
+      background: transparent;
+      color: #888;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-hero-secondary:hover {
+      border-color: #888;
+      color: #e8e8e8;
+      transform: translateY(-3px);
+    }
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      padding: 32px 10%;
+      background: rgba(10,0,0,0.8);
+      border-top: 1px solid #1a0000;
+      border-bottom: 1px solid #1a0000;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Creepster', cursive;
+      font-size: 2.4rem;
+      color: #c0392b;
+      display: block;
+      text-shadow: 0 0 16px rgba(192,57,43,0.4);
+    }
+    .stat-lbl {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    /* ── GENRE SECTION ── */
+    .genre-section {
+      padding: 80px 8%;
+      background: #0a0a0a;
+      text-align: center;
+    }
+    .section-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #c0392b;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Creepster', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #e8e8e8;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 56px;
+      font-size: 1.05rem;
+    }
+    .genre-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .genre-card {
+      background: #0d0505;
+      border: 1px solid #1a1010;
+      border-radius: 16px;
+      padding: 48px 32px 40px;
+      text-decoration: none;
+      transition: all 0.35s;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .genre-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    .genre-card.horror::before { background: linear-gradient(to right, transparent, #c0392b, transparent); }
+    .genre-card.funny::before  { background: linear-gradient(to right, transparent, #27ae60, transparent); }
+    .genre-card.mixed::before  { background: linear-gradient(to right, transparent, #8e44ad, transparent); }
+    .genre-card:hover::before  { opacity: 1; }
+    .genre-card:hover { transform: translateY(-8px); }
+    .genre-card.horror:hover { border-color: rgba(192,57,43,0.4); box-shadow: 0 16px 60px rgba(139,0,0,0.2); }
+    .genre-card.funny:hover  { border-color: rgba(39,174,96,0.4); box-shadow: 0 16px 60px rgba(39,174,96,0.15); }
+    .genre-card.mixed { opacity: 0.5; cursor: default; }
+    .genre-card.mixed:hover { transform: none; }
+    .genre-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 12px rgba(139,0,0,0.3));
+    }
+    .genre-name {
+      font-family: 'Creepster', cursive;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
     .genre-card.horror .genre-name { color: #c0392b; }
-    .genre-card.funny .genre-name { color: #27ae60; }
-    .genre-card.mixed .genre-name { color: #8e44ad; }
-    .genre-desc { color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 20px; }
-    .genre-tag { font-family: 'Share Tech Mono', monospace; font-size: 11px; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.08em; }
-    .genre-card.horror .genre-tag { background: rgba(139,0,0,0.2); color: #c0392b; border: 1px solid rgba(139,0,0,0.3); }
-    .genre-card.funny .genre-tag { background: rgba(39,174,96,0.2); color: #27ae60; border: 1px solid rgba(39,174,96,0.3); }
-    .genre-card.mixed .genre-tag { background: rgba(142,68,173,0.2); color: #8e44ad; border: 1px solid rgba(142,68,173,0.3); }
+    .genre-card.funny  .genre-name { color: #27ae60; }
+    .genre-card.mixed  .genre-name { color: #8e44ad; }
+    .genre-desc {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .genre-meta {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .genre-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .genre-card.horror .genre-tag { background: rgba(139,0,0,0.15); color: #c0392b; border: 1px solid rgba(139,0,0,0.3); }
+    .genre-card.funny  .genre-tag { background: rgba(39,174,96,0.15); color: #27ae60; border: 1px solid rgba(39,174,96,0.3); }
+    /* ── FEATURES ── */
+    .features-section {
+      padding: 80px 8%;
+      background: #070404;
+      border-top: 1px solid #150000;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 56px auto 0;
+    }
+    .feature-item {
+      background: rgba(14,5,5,0.8);
+      border: 1px solid #1a0808;
+      border-radius: 14px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-item:hover {
+      border-color: rgba(192,57,43,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(139,0,0,0.12);
+    }
+    .feature-icon-wrap {
+      width: 64px;
+      height: 64px;
+      background: rgba(139,0,0,0.12);
+      border: 1px solid rgba(139,0,0,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+    }
+    .feature-title {
+      font-family: 'Creepster', cursive;
+      font-size: 1.5rem;
+      color: #c0392b;
+      margin-bottom: 10px;
+    }
+    .feature-desc { color: #555; font-size: 0.95rem; line-height: 1.6; }
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 8%;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, #070404 0%, rgba(0,0,0,0.9) 100%),
+        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&q=80') center/cover no-repeat fixed;
+    }
+    .cta-title {
+      font-family: 'Creepster', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: #fff;
+      text-shadow: 0 0 40px rgba(192,57,43,0.6);
+      margin-bottom: 16px;
+    }
+    .cta-sub {
+      color: #666;
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+    /* ── FOOTER ── */
+    .main-footer {
+      background: #050505;
+      border-top: 1px solid #150000;
+      padding: 40px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Creepster', cursive;
+      font-size: 1.4rem;
+      color: #c0392b;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #444;
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.08em;
+    }
+    .footer-links a:hover { color: #c0392b; }
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: #333;
+    }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .stats-bar { gap: 24px; padding: 24px 5%; }
+      .genre-section, .features-section, .cta-section { padding: 60px 5%; }
+      .main-footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
   </style>
 </head>
 <body>
   <div class="flicker-overlay"></div>
-  <main class="hero">
-    <div class="hero-content">
-      <h1 class="game-title">The Last Knock</h1>
-      <p class="game-subtitle">Every choice echoes in the dark.</p>
-      <p class="game-desc">A horror interactive story where your decisions determine whether you survive the night or become part of it.</p>
-      <div class="hero-buttons">
-        <a href="register.html" class="btn btn-primary">Begin Your Story</a>
-        <a href="login.html" class="btn btn-outline">I've Been Here Before</a>
-      </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">&#128123; Interactive Horror Story</div>
+    <h1 class="game-title">The Last<br/><span>Knock</span></h1>
+    <p class="game-subtitle">Three knocks. Infinite choices. One night that will change everything — if you survive it.</p>
+    <div class="hero-buttons">
+      <a href="register.html" class="btn-hero-primary">Begin Your Story</a>
+      <a href="login.html" class="btn-hero-secondary">I've Been Here Before</a>
     </div>
-    <div class="hero-ghost">
-      <div class="ghost-figure">&#128123;</div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">17+</span>
+      <span class="stat-lbl">Chapters</span>
     </div>
-  </main>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-lbl">Unique Endings</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">10</span>
+      <span class="stat-lbl">Achievements</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">&#8734;</span>
+      <span class="stat-lbl">Choices</span>
+    </div>
+  </div>
+
+  <!-- GENRE SELECTION -->
   <section class="genre-section">
-    <h2 class="genre-title">Choose Your Story</h2>
-    <p class="genre-subtitle">Pick your adventure - each path leads somewhere different</p>
+    <div class="section-eyebrow">Pick Your Story</div>
+    <h2 class="section-title">Choose Your Adventure</h2>
+    <p class="section-sub">Each genre is a different world — which door will you open?</p>
     <div class="genre-cards">
       <a href="login.html?genre=horror" class="genre-card horror fade-in-up">
         <span class="genre-emoji">&#128123;</span>
-        <div class="genre-name">Horror</div>
-        <p class="genre-desc">Dark corridors, strange knocks, and choices that haunt you. Not for the faint of heart.</p>
-        <span class="genre-tag">SCARY</span>
+        <span class="genre-name">Horror</span>
+        <p class="genre-desc">Dark corridors, strange knocks, and choices that haunt you forever. Face your deepest fears — if you dare.</p>
+        <div class="genre-meta">
+          <span class="genre-tag">Scary</span>
+          <span class="genre-tag">17 Chapters</span>
+          <span class="genre-tag">4 Endings</span>
+        </div>
       </a>
       <a href="login.html?genre=funny" class="genre-card funny fade-in-up">
         <span class="genre-emoji">&#128514;</span>
-        <div class="genre-name">Funny</div>
-        <p class="genre-desc">Haunted biryani, ghost chefs, and cursed desserts. Laugh your way through the supernatural.</p>
-        <span class="genre-tag">COMEDY</span>
+        <span class="genre-name">Funny</span>
+        <p class="genre-desc">Haunted biryani, ghost chefs, and cursed desserts. Laugh your way through the supernatural world.</p>
+        <div class="genre-meta">
+          <span class="genre-tag" style="background:rgba(39,174,96,0.15);color:#27ae60;border:1px solid rgba(39,174,96,0.3)">Comedy</span>
+          <span class="genre-tag" style="background:rgba(39,174,96,0.15);color:#27ae60;border:1px solid rgba(39,174,96,0.3)">9 Chapters</span>
+        </div>
       </a>
-      <a href="login.html?genre=mixed" class="genre-card mixed fade-in-up">
+      <div class="genre-card mixed">
         <span class="genre-emoji">&#127917;</span>
-        <div class="genre-name">Mixed</div>
-        <p class="genre-desc">When horror meets comedy - you never know whether to scream or laugh. Coming soon!</p>
-        <span class="genre-tag">COMING SOON</span>
-      </a>
+        <span class="genre-name" style="color:#8e44ad">Mixed</span>
+        <p class="genre-desc">When horror meets comedy — you never know whether to scream or laugh. The ultimate experience.</p>
+        <div class="genre-meta">
+          <span class="genre-tag" style="background:rgba(142,68,173,0.15);color:#8e44ad;border:1px solid rgba(142,68,173,0.3)">Coming Soon</span>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="features">
-    <div class="feature-card">
-      <span class="feature-icon">&#128256;</span>
-      <h3>Branching Story</h3>
-      <p>Every choice changes the path.</p>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div style="text-align:center">
+      <div class="section-eyebrow">What Awaits You</div>
+      <h2 class="section-title">Why Play The Last Knock?</h2>
     </div>
-    <div class="feature-card">
-      <span class="feature-icon">&#127942;</span>
-      <h3>Achievements</h3>
-      <p>Unlock secret badges hidden throughout the story.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">&#128128;</span>
-      <h3>Multiple Endings</h3>
-      <p>Survive, sacrifice, or vanish.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">&#9201;</span>
-      <h3>Timed Choices</h3>
-      <p>Hesitate too long and darkness decides.</p>
+    <div class="features-grid">
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#128256;</div>
+        <div class="feature-title">Branching Story</div>
+        <p class="feature-desc">Every choice changes the path. No two playthroughs are ever the same. Your decisions matter.</p>
+      </div>
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#9201;</div>
+        <div class="feature-title">Timed Choices</div>
+        <p class="feature-desc">The clock is ticking. Hesitate too long and the darkness makes the choice for you.</p>
+      </div>
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#127942;</div>
+        <div class="feature-title">Achievements</div>
+        <p class="feature-desc">Discover hidden badges scattered throughout the story. Some require very specific choices.</p>
+      </div>
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#128128;</div>
+        <div class="feature-title">Multiple Endings</div>
+        <p class="feature-desc">Escape, get trapped, sacrifice yourself, or vanish into the unknown. The ending is yours to find.</p>
+      </div>
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#127381;</div>
+        <div class="feature-title">Inventory System</div>
+        <p class="feature-desc">Collect items that unlock secret paths and hidden choices. What you carry matters.</p>
+      </div>
+      <div class="feature-item fade-in-up">
+        <div class="feature-icon-wrap">&#128202;</div>
+        <div class="feature-title">Leaderboard</div>
+        <p class="feature-desc">Compete with other survivors. Your score reflects how bravely — or cleverly — you played.</p>
+      </div>
     </div>
   </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-title">Are You Ready to Knock?</h2>
+    <p class="cta-sub">Thousands have tried. Few have survived. Will you be different?</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="register.html" class="btn-hero-primary">Start For Free</a>
+      <a href="login.html" class="btn-hero-secondary">Login</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="main-footer">
-    <p>2025 The Last Knock.</p>
+    <div class="footer-logo">The Last Knock</div>
+    <div class="footer-links">
+      <a href="register.html">Play</a>
+      <a href="login.html">Login</a>
+      <a href="leaderboard.html">Leaderboard</a>
+    </div>
+    <div class="footer-copy">&#169; 2025 The Last Knock. All rights reserved.</div>
   </footer>
+
   <script src="js/auth.js"></script>
 </body>
 </html>

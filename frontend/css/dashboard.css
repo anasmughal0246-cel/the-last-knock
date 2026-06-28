@@ -1,126 +1,215 @@
+/* ── Dashboard main ── */
 .dash-main {
   min-height: 100vh;
+  padding: 0;
   background:
-    linear-gradient(to bottom, rgba(10,0,0,0.88) 0%, rgba(5,5,5,0.95) 100%),
-    url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80')
-    center/cover no-repeat fixed;
-  padding: 60px 8%;
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139,0,0,0.18) 0%, transparent 70%),
+    #080808;
 }
 
+/* ── Welcome hero ── */
 .dash-welcome {
   text-align: center;
-  margin-bottom: 56px;
+  padding: 64px 8% 48px;
+  position: relative;
 }
-
+.dash-welcome::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(139,0,0,0.4), transparent);
+}
 .dash-welcome h2 {
   font-family: 'Creepster', cursive;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: #e8e8e8;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: #e2ddd8;
   margin-bottom: 10px;
+  letter-spacing: 0.04em;
 }
-
 .dash-welcome h2 .nav-username {
   color: #c0392b;
-  text-shadow: 0 0 20px rgba(139,0,0,0.5);
+  text-shadow: 0 0 24px rgba(192,57,43,0.5);
 }
-
 .dash-welcome p {
-  color: #888;
+  color: #7a706a;
   font-style: italic;
   font-size: 1.1rem;
 }
 
-.dash-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
+/* ── Genre section ── */
+.genre-select-section {
+  padding: 48px 8%;
+  position: relative;
 }
-
-.dash-card {
-  background: rgba(17,17,17,0.92);
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  padding: 36px 28px;
-  text-align: center;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  backdrop-filter: blur(4px);
+.genre-select-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(139,0,0,0.25), transparent);
 }
-
-.dash-card:hover {
-  border-color: #8b0000;
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(139,0,0,0.2);
-}
-
-.dash-card-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  display: block;
-  filter: drop-shadow(0 0 8px rgba(139,0,0,0.4));
-}
-
-.dash-card h3 {
+.genre-select-title {
   font-family: 'Creepster', cursive;
   font-size: 1.6rem;
   color: #c0392b;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
 }
-
-.dash-card p {
-  color: #888;
-  font-size: 0.95rem;
+.genre-select-sub {
+  color: #5a5050;
+  font-size: 0.9rem;
+  font-family: 'Share Tech Mono', monospace;
   margin-bottom: 24px;
-  min-height: 44px;
+  letter-spacing: 0.06em;
+}
+.genre-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.genre-btn {
+  padding: 13px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(80,10,10,0.4);
+  background: rgba(18,5,5,0.8);
+  color: #e2ddd8;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(4px);
+}
+.genre-btn:hover { transform: translateY(-3px); }
+.genre-btn.horror:hover {
+  border-color: rgba(192,57,43,0.6);
+  background: rgba(139,0,0,0.15);
+  color: #c0392b;
+  box-shadow: 0 8px 28px rgba(139,0,0,0.2);
+}
+.genre-btn.funny:hover {
+  border-color: rgba(39,174,96,0.6);
+  background: rgba(39,174,96,0.1);
+  color: #27ae60;
+  box-shadow: 0 8px 28px rgba(39,174,96,0.15);
+}
+.genre-btn.mixed {
+  opacity: .4;
+  cursor: not-allowed;
+}
+.genre-active.horror {
+  border-color: rgba(192,57,43,0.6) !important;
+  background: rgba(139,0,0,0.2) !important;
+  color: #c0392b !important;
+  box-shadow: 0 0 20px rgba(139,0,0,0.2) !important;
+}
+.genre-active.funny {
+  border-color: rgba(39,174,96,0.6) !important;
+  background: rgba(39,174,96,0.12) !important;
+  color: #27ae60 !important;
 }
 
+/* ── Dashboard cards ── */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 48px 8% 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.dash-card {
+  background: rgba(14,5,5,0.85);
+  border: 1px solid rgba(60,10,10,0.35);
+  border-radius: 16px;
+  padding: 40px 28px 32px;
+  text-align: center;
+  transition: all .3s cubic-bezier(.22,.68,0,1.2);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+.dash-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(139,0,0,0.5), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.dash-card:hover::before { opacity: 1; }
+.dash-card:hover {
+  border-color: rgba(192,57,43,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(139,0,0,0.18);
+}
+.dash-card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 18px;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(139,0,0,0.3));
+}
+.dash-card h3 {
+  font-family: 'Creepster', cursive;
+  font-size: 1.7rem;
+  color: #c0392b;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.dash-card p {
+  color: #6a6060;
+  font-size: .95rem;
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
 .dash-card .btn-primary,
 .dash-card .btn-outline {
-  display: inline-block;
-  padding: 10px 24px;
-  font-size: 14px;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  border-radius: 8px;
   font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all .25s;
   text-decoration: none;
+  border: 1px solid;
 }
-
 .dash-card .btn-primary {
-  background: #8b0000;
+  background: linear-gradient(135deg,#6b0000,#9b1a1a);
   color: #fff;
-  border: 1px solid #c0392b;
+  border-color: #c0392b;
+  box-shadow: 0 4px 16px rgba(139,0,0,0.3);
 }
 .dash-card .btn-primary:hover {
-  background: #c0392b;
-  box-shadow: 0 0 16px rgba(192,57,43,0.4);
+  background: linear-gradient(135deg,#8b0000,#c0392b);
+  box-shadow: 0 8px 28px rgba(192,57,43,0.5);
+  transform: translateY(-2px);
+  color: #fff;
 }
-
 .dash-card .btn-outline {
   background: transparent;
-  color: #e8e8e8;
-  border: 1px solid #2a2a2a;
+  color: #888;
+  border-color: rgba(80,10,10,0.35);
 }
 .dash-card .btn-outline:hover {
-  border-color: #c0392b;
+  border-color: rgba(192,57,43,0.5);
   color: #c0392b;
+  background: rgba(139,0,0,0.08);
+  transform: translateY(-2px);
 }
 
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  .dash-main { padding: 40px 5%; }
-
-  .dash-cards {
-    grid-template-columns: 1fr;
-    max-width: 420px;
-  }
-
-  .dash-card { padding: 28px 20px; }
-  .dash-card p { min-height: unset; }
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .dash-cards { grid-template-columns: 1fr; max-width: 480px; }
+  .genre-btns { gap: 8px; }
 }
-
-@media (max-width: 480px) {
-  .dash-welcome h2 { font-size: 1.8rem; }
+@media (max-width: 600px) {
+  .dash-welcome { padding: 48px 5% 36px; }
+  .genre-select-section { padding: 36px 5%; }
+  .dash-cards { padding: 36px 5% 60px; }
 }
