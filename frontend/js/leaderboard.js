@@ -2,66 +2,98 @@ document.addEventListener('DOMContentLoaded', async () => {
   const token = localStorage.getItem('token');
   if (!token) { window.location.href = '/login.html'; return; }
 
-  document.getElementById('logout-btn').addEventListener('click', () => {
-    localStorage.clear();
-    window.location.href = '/index.html';
-  });
+  const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+  const body        = document.getElementById('lb-body');
 
-  const me = JSON.parse(localStorage.getItem('user') || '{}');
+  // Show loading
+  body.innerHTML = `
+    <tr>
+      <td colspan="4" style="text-align:center;padding:40px">
+        <div class="spinner"></div>
+        <div style="color:#888;font-family:'Share Tech Mono',monospace;font-size:13px;margin-top:12px">
+          Loading your stats...
+        </div>
+      </td>
+    </tr>`;
 
   try {
-    const res  = await fetch('/api/leaderboard', {
-      headers: { Authorization: `Bearer ${token}` }
+    // Get profile directly — faster than leaderboard
+    const res  = await fetch('/api/profile', {
+      headers: { Authorization: 'Bearer ' + token }
     });
     const data = await res.json();
-    const users = data.leaderboard || data.users || [];
 
-    // Podium — top 3
-    const podium  = document.getElementById('lb-podium');
-    const medals  = ['🥇','🥈','🥉'];
-    const classes = ['rank-2','rank-1','rank-3'];
-    const order   = [1, 0, 2]; // display: 2nd, 1st, 3rd
+    if (!data.success) throw new Error('Failed to load');
 
-    podium.innerHTML = '';
-    order.forEach(i => {
-      const u = users[i];
-      if (!u) return;
-      const card = document.createElement('div');
-      card.className = `podium-card ${classes[i]} fade-in-up`;
-      card.innerHTML = `
-        <span class="podium-medal">${medals[i]}</span>
-        <div class="podium-name">${u.username}</div>
-        <div class="podium-score">⚡ ${u.totalScore || 0}</div>
-      `;
-      podium.appendChild(card);
+    const profile = data.profile;
+
+    // Get rank separately
+    const lbRes  = await fetch('/api/profile/leaderboard', {
+      headers: { Authorization: 'Bearer ' + token }
     });
+    const lbData = await lbRes.json();
 
-    // Full list
-    const list = document.getElementById('lb-list');
-    list.innerHTML = '';
+    const rank = lbData.leaderboard
+      ? lbData.leaderboard.findIndex(u => u.username === profile.username) + 1
+      : 0;
 
-    if (users.length === 0) {
-      list.innerHTML = '<p style="color:#666;text-align:center">No players yet. Be the first!</p>';
-      return;
-    }
+    const rankIcon = rank === 1 ? '👑' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank > 0 ? `#${rank}` : '-';
 
-    users.forEach((u, i) => {
-      const isMe = u._id === me.id || u.username === me.username;
-      const row  = document.createElement('div');
-      row.className = `lb-row fade-in-up ${isMe ? 'is-me' : ''}`;
-      row.style.animationDelay = (i * 0.05) + 's';
-      row.innerHTML = `
-        <div class="lb-rank">${i + 1}</div>
-        <div class="lb-avatar">${u.username.charAt(0).toUpperCase()}</div>
-        <div class="lb-name">${u.username}</div>
-        <div class="lb-games">${u.gamesPlayed || 0} games</div>
-        <div class="lb-score">⚡ ${u.totalScore || 0}</div>
-      `;
-      list.appendChild(row);
-    });
+    body.innerHTML = `
+      <tr class="lb-me">
+        <td class="lb-rank" style="font-size:1.5rem">${rankIcon}</td>
+        <td>
+          <div style="font-family:'Creepster',cursive;font-size:1.3rem;color:#e8e8e8">
+            ${profile.username}
+          </div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#c0392b;margin-top:4px">
+            YOU
+          </div>
+        </td>
+        <td class="lb-score" style="font-size:1.3rem">${profile.totalScore || 0}</td>
+        <td style="color:#888;font-family:'Share Tech Mono',monospace;font-size:13px">
+          ${profile.gamesPlayed || 0} games
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="
+          text-align:center;
+          padding:16px;
+          color:#555;
+          font-family:'Share Tech Mono',monospace;
+          font-size:12px;
+          border-top:1px solid #1a1a1a;
+          letter-spacing:0.05em;
+        ">
+          ${rank > 0
+            ? `RANKED ${rankIcon} OUT OF ${lbData.leaderboard.length} SURVIVORS`
+            : 'PLAY THE GAME TO GET RANKED'}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:center;padding:20px">
+          <a href="story.html" style="
+            padding:12px 28px;
+            background:#8b0000;
+            color:#fff;
+            border:1px solid #c0392b;
+            border-radius:4px;
+            font-family:'Share Tech Mono',monospace;
+            font-size:13px;
+            text-decoration:none;
+            display:inline-block;
+            transition:all 0.2s;
+          ">&#9654; Play to Improve Score</a>
+        </td>
+      </tr>
+    `;
 
   } catch (err) {
-    document.getElementById('lb-list').innerHTML =
-      `<p style="color:#ff6b6b;text-align:center">Error: ${err.message}</p>`;
+    body.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center;color:#888;padding:40px">
+          Could not load stats. Please try again.
+        </td>
+      </tr>`;
   }
 });

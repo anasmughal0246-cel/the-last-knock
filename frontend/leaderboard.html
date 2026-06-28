@@ -15,34 +15,51 @@
   <header class="dash-header">
     <h1 class="dash-logo">The Last Knock</h1>
     <nav class="dash-nav">
-      <a href="dashboard.html">🏠 Dashboard</a>
-      <a href="story.html">▶ Play</a>
-      <a href="achievements.html">🏆 Achievements</a>
-      <a href="profile.html">👤 Profile</a>
-      <a href="settings.html">⚙️ Settings</a>
+      <a href="dashboard.html">&#127968; Dashboard</a>
+      <a href="story.html">&#9654; Play</a>
+      <a href="achievements.html">&#127942; Achievements</a>
+      <a href="profile.html">&#128100; Profile</a>
+      <a href="settings.html">&#9881; Settings</a>
       <button class="btn-sm" id="logout-btn">Logout</button>
     </nav>
   </header>
 
   <main class="lb-main">
-    <div class="lb-header">
-      <h2 class="lb-title">Leaderboard</h2>
-      <p class="lb-subtitle">Who dared to knock — and survived?</p>
-    </div>
+    <h2 class="lb-title">Leaderboard</h2>
+    <p class="lb-subtitle">Your rank among the survivors</p>
 
-    <div class="lb-wrap">
-      <!-- Top 3 podium -->
-      <div class="lb-podium" id="lb-podium"></div>
-
-      <!-- Full list -->
-      <div class="lb-list" id="lb-list">
-        <div class="spinner"></div>
-      </div>
+    <div class="lb-table-wrap">
+      <table class="lb-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Survivor</th>
+            <th>Score</th>
+            <th>Games</th>
+          </tr>
+        </thead>
+        <tbody id="lb-body">
+          <tr>
+            <td colspan="4" style="text-align:center;padding:40px">
+              <div class="spinner"></div>
+              <div style="color:#888;font-family:'Share Tech Mono',monospace;font-size:13px;margin-top:12px">
+                Loading your stats...
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/leaderboard.js"></script>
+  <script>
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = '/index.html';
+    });
+  </script>
 </body>
 </html>
