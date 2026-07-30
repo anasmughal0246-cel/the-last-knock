@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await api.getProgress();
     const genre = localStorage.getItem('selectedGenre') || 'horror';
 const startChapter = data.progress ? data.progress.currentChapter : (genreStartChapter[genre] || 1);
-loadChapter(startChapter);  } catch {
+loadChapter(startChapter);
+  } catch {
     setTimeout(() => loadChapter(1), 2500);
   }
 });
